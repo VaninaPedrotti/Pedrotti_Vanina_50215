@@ -10,6 +10,8 @@ Esta página web busca ofrecer una alternativa accesible para los amantes de la 
 Además, aspira a dar una segunda oportunidad a esos libros que, por diversas razones, han quedado relegados en los estantes de bibliotecas y hogares.
 
 Video explicativo:
+https://youtu.be/BfrKKDyor0g
+Olvide mencionar que se pueden buscar libros y que se pueden eliminar libros de la lista de deseos
 
 Casos de test:
 Archivo excel subido
