@@ -1,0 +1,63 @@
+{% extends "aplicacion/index.html" %}
+{% load static %}
+
+{% block titulo %}
+
+<h1 class="mb-5">Acerca de mi</h1>
+
+{% endblock titulo %}
+<p>
+    
+</p>
+
+{% block contenido %}
+<section class="page-section bg-light">
+    <div class="container text-center">
+            <div class="row">
+                <div class="col">
+                    <div class="card border-0" style="width: 25rem; background-color: #ffc800; padding: 10px;" >
+                        <img src="{% static 'assets/img/foto.jpg'%}" class="card-img-top rounded-circle" alt="..." >
+                        <div class="card-body">
+                            <h5 class="card-title">Vanina Pedrotti</h5>
+                            <p><strong>Edad:</strong> 19 años</p>
+                            <p><i class="fa-solid fa-location-dot"></i>  San Francisco, Córdoba, Argentina</p>
+                            <a class="btn btn-dark btn-social mx-2" href="https://www.instagram.com/vani.pedrotti/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a class="btn btn-dark btn-social mx-2" href="https://www.facebook.com/vanina.pedrotti" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-dark btn-social mx-2" href="tel:+54 9 3492 227536" aria-label="Telefono"><i class="fa-solid fa-phone"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card border-0" style="width: 25rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">Un poco sobre mi</h5>
+                            <p class="card-text">Completé mis estudios secundarios en mi pueblo, obteniendo el título de bachiller en economía y administración.</p>
+                            <p class="card-text">Sin embargo, descubrí que esta área no despertaba mi pasión, por ende comencé una carrera en tecnología y me llevó a adentrarme en este fascinante mundo.</p>
+                            <p class="card-text">Actualmente, me encuentro cursando la carrera de Ingeniería Electrónica en la UTN Facultad Regional San Francisco.</p>
+                            <p class="card-text">Me considero una persona perfeccionista, apasionada y dedicada. </p>
+                            <p class="card-text">Me encanta la comida, viajar y almacenar cada recuerdo en mi memoria.</p>
+                            <p class="card-text">Mi filosofía de vida se basa en amar el pasado, vivir plenamente el presente y tener respeto por el futuro.</p>
+                            <p class="card-text">Entre mis mayores temores se encuentran perder la visión y la memoria, ya que valoro profundamente la capacidad de experimentar y recordar cada momento de la vida.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card border-0" style="width: 25rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">Un poco sobre mi y la página web</h5>
+                            <p class="card-text"></p>
+                            <p class="card-text">En mi tiempo libre disfruto leyendo.</p>
+                            <p class="card-text">Sin embargo, en medio de los desafíos económicos que enfrenta Argentina en la actualidad, la adquisición de libros se ha vuelto una práctica costosa. </p>
+                            <p class="card-text">Consciente de esta situación, surgió en mí la idea de crear una página web dedicada a la compra y venta de libros usados. </p>
+                            <p class="card-text">Esta iniciativa no solo busca ofrecer una alternativa accesible para los amantes de la lectura, 
+                                sino que también aspira a dar una segunda oportunidad a esos libros que, por diversas razones, 
+                                han quedado relegados en los estantes de bibliotecas y hogares.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+</section>
+{% endblock contenido %}

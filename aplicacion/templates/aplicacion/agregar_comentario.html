@@ -1,0 +1,37 @@
+{% extends "aplicacion/index.html" %}
+
+{% block titulo %}
+
+
+
+{% if not comentario.mensaje %}
+
+<h1 class="fw-bolder">Agregar comentario</h1>
+<h4>Si no desea agregar un comentario
+    <a style="color: #ffc800; text-decoration: underline;" href="{% url 'producto' %}">presione aquí</a>
+</h4>
+{% else %}
+    <h1 class="mb-5">Modificar comentario</h1>
+    <h4>Si no desea modificar el comentario
+        <a style="color: #ffc800; text-decoration: underline;" href="{% url 'producto' %}">presione aquí</a>
+    </h4>
+{% endif %}
+
+{% endblock titulo %}
+
+{% block contenido %}
+
+<section class="page-section bg-light">
+    <div class="container_libro">
+        <form action="" method="post">
+            {% csrf_token %}
+            <b><label for="id_mensaje" class="form-label">Mensaje:</label></b>
+            <div class="mb-3">
+                <textarea name="mensaje" cols="40" rows="10" id="id_mensaje">{{ comentario.mensaje }}</textarea>
+            </div>
+            <input type="submit" class="btn btn-primary" value="Guardar">
+        </form>
+    </div>
+</section>
+
+{% endblock contenido %}

@@ -1,0 +1,40 @@
+{% extends "aplicacion/index.html" %}
+
+
+{% block titulo %}
+<h1 class="mb-5">Cambiar Contraseña</h1>
+{% endblock titulo %}
+
+
+{% block contenido %}
+
+<section class="page-section bg-light">
+    <div class="container text-center">
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="form-floating mb-3">
+                <input class="form-control" type="password" name="old_password" autocomplete="current-password" autofocus="" required="" id="id_old_password" placeholder="Contraseña antigua">
+                <label for="id_old_password">Contraseña antigua:</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input class="form-control" type="password" name="new_password1" autocomplete="new-password" required="" aria-describedby="id_new_password1_helptext" id="id_new_password1" placeholder="Contraseña nueva">
+                <label for="id_new_password1">Contraseña nueva:</label>
+                <div class="form-text" align="left">
+                    <ul>
+                        <li>Su contraseña no puede asemejarse tanto a su otra información personal.</li>
+                        <li>Su contraseña debe contener al menos 8 caracteres.</li>
+                        <li>Su contraseña no puede ser una clave utilizada comúnmente.</li>
+                        <li>Su contraseña no puede ser completamente numérica.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="form-floating mb-3">
+                <input class="form-control" type="password" name="new_password2" autocomplete="new-password" required="" id="id_new_password2" placeholder="Contraseña nueva (confirmación)">
+                <label for="id_new_password2">Contraseña nueva (confirmación):</label>
+            </div>
+            <input type="submit" class="btn btn-primary" value="Cambiar">
+        </form>
+    </div>
+</section>
+
+{% endblock contenido %}

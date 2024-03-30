@@ -1,0 +1,27 @@
+{% extends "aplicacion/index.html" %}
+
+
+{% block titulo %}
+<h1 class="mb-5">Avatar</h1>
+<h4>Si no desea cambiar el avatar
+    <a style="color: #ffc800; text-decoration: underline;" href="{% url 'producto' %}">presione aquí</a>
+</h4>
+{% endblock titulo %}
+
+
+{% block contenido %}
+
+<section class="page-section bg-light">
+    <div class="container_libro">
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="mb-3">
+                <div><b><label for="id_imagen" class="form-label">Imagen:</label></b></div>
+                <input type="file" name="imagen" accept="image/*" required="" id="id_imagen">
+            </div>
+            <input type="submit" class="btn btn-primary" value="Actualizar Avatar">
+        </form>
+    </div>
+</section>
+
+{% endblock contenido %}

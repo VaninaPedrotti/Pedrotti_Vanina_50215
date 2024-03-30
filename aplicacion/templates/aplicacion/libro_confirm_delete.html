@@ -1,0 +1,25 @@
+{% extends "aplicacion/index.html" %}
+
+
+{% block titulo %}
+<h1 class="mb-5">Eliminar libro</h1>
+<h4>Si no desea eliminar el libro
+    <a style="color: #ffc800; text-decoration: underline;" href="{% url 'libro_detalle' libro.id %}">presione aquí</a>
+</h4>
+{% endblock titulo %}
+
+{% block contenido %}
+<section class="page-section bg-light">
+    <div class="container text-center">
+        <form action="" method="POST">
+            {% csrf_token %}   
+            <div>     
+                <h3>¿Esta seguro de eliminar el libro?<p style="color:red">{{ object }}</p></h3>
+            </div>
+            <div>
+                <input type="submit" class="btn btn-primary btn-block" value="Confirmar">
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock contenido %}

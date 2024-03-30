@@ -1,0 +1,83 @@
+{% extends "aplicacion/index.html" %}
+{% load static %}
+
+{% block titulo %}
+<h1 class="mb-5">{{libro.titulo}}</h1>
+<h3 class="item-intro text-muted">{{ libro.autor }}</h3>
+{% endblock titulo %}
+
+
+{% block contenido %}
+<section class="page-section bg-light">
+    <div class="container_libro">
+        <div class="row letra_grande my-4">
+            <div class="contenedor-imagen my-4">
+                <img height= "300px" src="{{ libro.imagen.url }}" alt="Imagen principal del libro" />
+            </div>
+            <strong>Género: </strong> <p>{{ libro.genero }}</p>
+            <strong>Descripción: </strong> <p>{{ libro.descripcion }}</p>
+            <strong>Ubicación: </strong> <p>{{ libro.ubicacion }}</p>
+            <strong>Usuario:</strong> <p>{{ libro.usuario }}</p>
+            <strong>Fecha:</strong> <p>{{ libro.fecha}}</p>
+            <div class="contenedor-imagen my-4">
+                <span class="badge text-bg-warning rounded-pill" style="font-size: 30px;">{{ libro.precio }}</span>
+            </div>
+            {% if libro.usuario == request.user %}
+            {% else %}
+                <div class="my-4">
+                    <form action="{% url 'agregar_wishlist' libro.id %}" method="post">
+                        {% csrf_token %}
+                        <button class="btn btn-warning rounded-pill" style="font-size: 20px;" type="submit">Agregar a Lista de Deseos</button>
+                    </form>
+                </div>
+            {% endif %}
+        </div>
+        <div class="letra_grande" >
+            {% if libro.usuario == request.user %}
+                <a href="{% url 'libro_modi' libro.id %}" class="btn btn-primary btn-lg"
+                    style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .99rem;"
+                    >
+                    <i class="fa fa-edit fa-sm" title="Edit Record"></i>
+                </a>
+                <a href="{% url 'libro_eliminar' libro.id %}" class="btn btn-danger btn-lg"
+                    style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .99rem;"
+                    ><i class="fa fa-trash fa-sm" title="Delete Record"></i>
+                </a>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+<section class="page-section bg-light" id="portfolio">
+    <div class="container">
+        <div class="contenedor_comentario my-2">
+            <h4>Comentarios</h4>
+            <a href="{% url 'agregar_comentario' libro.id %}" class="btn btn-primary btn-sm" >
+                <i class="fa fa-plus fa-lg" title="Crear"> </i>
+            </a>
+        </div>
+        {% if comentarios %}
+            {% for comentario in comentarios %}
+            <p><strong>{{comentario.usuario}}</strong></p>
+            <p>{{comentario.mensaje}}</p>
+            <p><small>{{comentario.fechaComentario}}</small></p>
+            {% if comentario.usuario == request.user %}
+                <a href="{% url 'comentario_modi' comentario.id %}" class="btn btn-primary btn-lg"
+                    style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .99rem;"
+                    >
+                    <i class="fa fa-edit fa-sm" title="Edit Record"></i>
+                </a>
+                <a href="{% url 'comentario_eliminar' comentario.id %}" class="btn btn-danger btn-lg"
+                    style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .99rem;"
+                    ><i class="fa fa-trash fa-sm" title="Delete Record"></i>
+                </a>
+            <hr>
+            {% endif %}
+            {% endfor %}
+        {% else %}
+            <p>No hay comentarios disponibles para este libro.</p>
+        {% endif %}
+    </div>
+</section>
+
+{% endblock contenido %}

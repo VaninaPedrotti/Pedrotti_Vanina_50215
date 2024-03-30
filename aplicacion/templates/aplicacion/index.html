@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+    <!--? Cabecera -->
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="Proyecto Final" />
+        <meta name="author" content="Pedrotti, Vanina" />
+        <title>SegundaVidaLibros</title>
+        <!--/ Simbolito - archivo estatico-->
+        <link rel="icon" type="image/x-icon" href="{% static 'assets/librito_icono.png'%}" />
+        <!--/ css-->
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+        <!-- Font Awesome-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> 
+        <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+    </head>
+    <!--? Body -->
+    <body id="page-top">
+        <!--? Navegacion - -->
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav" style="background-color: #5f6366;">
+            <div class="container">
+                <!--? Logo SegundaVidaLibro que va al inicio--> 
+                <a class="navbar-brand" href="{% url 'home' %}">
+                    <img src="{% static 'assets/img/logo-inicio.png'%}" height= "800" alt="Inicio" />
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars ms-1"></i>
+                </button>
+                
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                        {% if  user.is_authenticated %} 
+                        <li class="nav-item"><a class="nav-link mx-5" href="{% url 'producto' %}">Productos</a></li>
+                        <li class="nav-item"><a class="nav-link mx-5" href="{% url 'wishlist' %}">Lista de deseos</a></li>
+                        <li class="nav-item"><a class="nav-link btn btn-primary" style="color:white" href="{% url 'perfil' %}">{{user.username}}</a></li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'agregar_avatar' %}" ><img class="rounded-circle" src="{{ request.session.avatar }}" height="40px" weight="40px"/></a>
+                        </li>
+                        <li class="nav-item"><a class="btn btn-primary" href="{% url 'logout' %}">Cerrar sesion</a></li>
+                        {% else %}
+                        <li class="nav-item"><a class="nav-link" href="#sobre">Sobre la web</a></li>
+                        <div class="btn-group">
+                            <button type="button" class="dropdown-item" data-bs-toggle="dropdown" aria-expanded="false">
+                                <p style="color:white" class="btn btn-primary">Ingresar</p>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{% url 'login' %}">Iniciar sesion</a></li>
+                                <li><a class="dropdown-item" href="{% url 'registrar' %}">Registrar</a></li>
+                            </ul>
+                        </div>
+                        {% endif %} 
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!--? Cabecera de body-->
+        <header class="masthead">
+            <div class="container">
+                {% block titulo %}
+                <div class="masthead-subheading">Segunda Vida Libros</div>
+                <div class="masthead-heading text-uppercase">Bienvenido al mundo de los libros usados</div>
+                <a class="btn btn-primary btn-xl text-uppercase" href="#sobre">Conocer más</a>
+                {% endblock titulo %}
+            </div>
+        </header>
+        {% block contenido %}
+        <!--? Sobre la web-->
+        <section class="page-section" id="sobre">
+            <div class="container">
+                <div class="text-center my-4">
+                    <h2 class="section-heading text-uppercase">Sobre la web</h2>
+                </div>
+                <!--? registra la lista-->
+                <ul class="timeline">
+                    <!--? primer item-->
+                    <li>
+                        <div class="timeline-image"><img class="rounded-circle img-fluid-sobre" src="{% static 'assets/img/sobre/comprar.png'%}" alt="Comprar" /></div>
+                        <div class="timeline-panel">
+                            <div class="timeline-heading">
+                                <h4 class="subheading">Comprar libros usados</h4>
+                            </div>
+                            <div class="timeline-body"><p class="text-muted">Compra a un menor precio y de forma segura. Revisá nuestros productos, ten por seguro que vamos a detallar sus irregularidades(hojas amarillas, subrrayadas o rotas). 
+                                Podes hacer tus preguntas en la zona de comentarios. Agrega al carrito y compra. 
+                                TU LIBRO LLEGARÁ A TU HOGAR DE FORMA SEGURA Y SANA</p></div>
+                        </div>
+                    </li>
+                    <!--? segundo item-->
+                    <li class="timeline-inverted">
+                        <div class="timeline-image"><img class="rounded-circle img-fluid-sobre" src="{% static 'assets/img/sobre/vender.png'%}" alt="vender" /></div>
+                        <div class="timeline-panel">
+                            <div class="timeline-heading">
+                                <h4 class="subheading">Vender tus libros</h4>
+                            </div>
+                            <div class="timeline-body"><p class="text-muted">Vende y dale una segunda vida a aquellos libros que ya no desees en tu estanteria. Cargalos a nuestra pagina web con todos los requerimientos que te solicitamos.</p></div>
+                        </div>
+                    </li>
+                    <li class="timeline-inverted">
+                        <div class="timeline-image">
+                            <h4>
+                                Bienvenidos
+                                <br />
+                                a nuestra
+                                <br />
+                                comunidad!
+                            </h4>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        {% endblock contenido %}
+        <!--? Footer-->
+        <footer class="footer py-4">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-4 text-lg-start">Copyright &copy; Vanina Pedrotti 2024</div>
+                    <div class="col-lg-4 my-3 my-lg-0">
+                        <a class="btn btn-dark btn-social mx-2" href="{% url 'pagina_default' %}" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a class="btn btn-dark btn-social mx-2" href="{% url 'pagina_default' %}" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-dark btn-social mx-2" href="{% url 'pagina_default' %}" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    </div>
+                    <div class="col-lg-4 text-lg-end">
+                        <a class="link-dark text-decoration-none me-3" href="{% url 'about' %}">Acerca de mi</a>
+                        <a class="link-dark text-decoration-none" href="{% url 'pagina_default' %}">Condiciones de uso</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    </body>
+</html>

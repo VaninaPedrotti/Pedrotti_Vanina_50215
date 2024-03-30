@@ -1,0 +1,43 @@
+{% extends "aplicacion/index.html" %}
+{% load static %}
+<!--? home de los usuarios -->
+{% block titulo %}
+<h1 class="mb-5">Lista de deseos de {{ user.username }}</h1>
+{% endblock titulo %}
+
+
+{% block contenido %}
+
+<!--? Portfolio Grid-->
+<section class="page-section bg-light" id="portfolio">
+    <div class="container">
+        <div class="row">
+        {% if libros %}
+            {% for libro in libros %}
+                <!--? Listado de los libros-->
+                <div class="col-lg-4 col-sm-6 mb-4">
+                    <div class="portfolio-item">
+                        <a class="portfolio-link" href="{% url 'libro_detalle' libro.id %}">
+                            <div class="portfolio-hover">
+                                <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                            </div>
+                            <img class="img-fluid" src="{{ libro.imagen.url }}" width="500px" />
+                        </a>
+                        <div class="portfolio-caption">
+                            <div class="portfolio-caption-heading">{{ libro.titulo }}</div>
+                            <div class="portfolio-caption-subheading text-muted my-2">{{ libro.precio }}</div>
+                            <a href="{% url 'eliminar_wishlist' libro.id %}" class="btn btn-danger btn-lg"
+                                style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .99rem;"
+                            ><i class="fa fa-trash fa-sm" title="Delete Record"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="timeline-body" style="font-size: 30px;"><p class="text-muted text-center">No hay libros en tu lista de deseos.</p></div>
+        {% endif %}
+    </div> 
+</section>
+
+{% endblock contenido %}

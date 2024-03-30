@@ -1,0 +1,63 @@
+{% extends "aplicacion/index.html" %}
+
+
+{% block titulo %}
+<h1 class="mb-5">Registro de Usuario</h1>
+{% endblock titulo %}
+
+
+{% block contenido %}
+
+<section class="page-section bg-light">
+    <div class="container text-center">
+        <form action="" method="post" onsubmit=" return validarFormulario()">
+            {% csrf_token %}
+            <div class="form-floating mb-3">
+                <input class="form-control" type="text" name="username" maxlength="150" autofocus="" required="" aria-describedby="id_username_helptext" id="id_username" placeholder="Nombre de Usuario">
+                <label for="id_username">Nombre de usuario:</label>
+                <div id="id_username_helptext" class="form-text" align="left">Requerido. 150 carácteres como máximo. Únicamente letras, dígitos y @/./+/-/_ </div>
+            </div>
+            <div class="form-floating mb-3">
+                <input class="form-control" type="email" name="email" maxlength="320" required="" id="id_email" placeholder="Email">
+                <label for="id_email">Email:</label>
+            </div>
+            <div class="input-group has-validation mb-3">
+                <div class="form-floating is-invalid">
+                    <input type="password" name="password1" class="form-control is-invalid" required="" id="id_password1" placeholder="Username">
+                    <label for="id_password1">Contraseña:</label>
+                </div>
+            </div>
+            <div class="input-group has-validation mb-3">
+                <div class="form-floating is-invalid">
+                    <input type="password" name="password2" class="form-control is-invalid" required="" id="id_password2" placeholder="Username">
+                    <label for="id_password2">Confirmar contraseña:</label>
+                </div>
+                <div class="invalid-feedback" align="left">
+                    Por favor, ingrese la contraseña.
+                </div>
+            </div>
+            <div id="mensajeError" style="display: none; color: black; font-size: 30px;">
+                Las contraseñas no coinciden. Por favor, inténtelo de nuevo.
+            </div>
+            <input type="submit" class="btn btn-primary" value="Enviar">
+        </form>
+
+<!--/ Para que diga contraseña distintas-->
+        <script>
+            function validarFormulario() {
+                var contraseña = document.getElementById("id_password1").value;
+                var confirmarContraseña = document.getElementById("id_password2").value;
+    
+                if (contraseña !== confirmarContraseña) {
+                    document.getElementById("mensajeError").style.display = "block";
+                    return false; 
+                } else {
+                    return true; 
+                }
+            }
+        </script>
+
+    </div>
+</section>
+
+{% endblock contenido %}

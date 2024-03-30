@@ -1,0 +1,61 @@
+{% extends "aplicacion/index.html" %}
+{% load static %}
+<!--? home de los usuarios -->
+{% block titulo %}
+<h1 class="mb-5">Libros</h1>
+
+<!--/ poner el buscar libro -->
+<div class="mx-auto p-8" style="width: 400px;">
+    <form class="d-flex" role="search" action="{% url 'encontrar_libro' %}" method="get">
+        <input class="form-control me-2" type="text" placeholder="Buscar libro: " aria-label="Search" name="buscar" id="buscar">
+        <button class="btn btn-primary" type="submit" value="Buscar">Buscar</button>
+    </form>
+</div>
+{% endblock titulo %}
+
+
+{% block contenido %}
+<!--? Portfolio Grid-->
+<section class="page-section bg-light" id="portfolio">
+    <div class="container">
+        <div class="row">
+            <!--? Agregar libro -->
+            <div class="col-lg-4 col-sm-6 mb-4">
+                <div class="portfolio-item">
+                    <a class="portfolio-link" href="{% url 'libro_crear' %}">
+                        <div class="portfolio-hover">
+                            <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                        </div>
+                        <img class="img-fluid" src="{% static 'assets/img/default.png'%}" alt="..." />
+                    </a>
+                    <div class="portfolio-caption">
+                        <div class="portfolio-caption-heading">Agregar Libro</div>
+                        <div class="portfolio-caption-subheading text-muted">Agrega aqui tu libro a vender</div>
+                    </div>
+                </div>
+            </div>
+            {% if libros %}
+                {% for libro in libros %}
+                <!--? Listado de los libros-->
+                <div class="col-lg-4 col-sm-6 mb-4">
+                    <div class="portfolio-item">
+                        <a class="portfolio-link" href="{% url 'libro_detalle' libro.id %}">
+                            <div class="portfolio-hover">
+                                <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                            </div>
+                            <img class="img-fluid" src="{{ libro.imagen.url }}" width="500px" />
+                        </a>
+                        <div class="portfolio-caption">
+                            <div class="portfolio-caption-heading">{{ libro.titulo }}</div>
+                            <div class="portfolio-caption-subheading text-muted">{{ libro.precio }}</div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+            <div class="timeline-body"><h3 class="text-muted text-center">No hay libros disponibles</h3></div>
+            {% endif %}
+        </div>
+    </div> 
+</section>
+{% endblock contenido %}

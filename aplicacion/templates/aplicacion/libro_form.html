@@ -1,0 +1,60 @@
+{% extends "aplicacion/index.html" %}
+<!-- Crear Libro  -->
+
+{% block titulo %}
+
+{% if not libro.titulo %}
+    <h1 class="mb-5">Agregar libro</h1>
+    <h4>Si no desea vender ningún libro
+        <a style="color: #ffc800; text-decoration: underline;" href="{% url 'producto' %}">presione aquí</a>
+    </h4>
+{% else %}
+    <h1 class="mb-5">Modificar libro</h1>
+    <h4>Si no desea modificar "{{ libro.titulo }}""
+        <a style="color: #ffc800; text-decoration: underline;" href="{% url 'libro_detalle' libro.id %}">presione aquí</a>
+    </h4>
+{% endif %}
+
+{% endblock titulo %}
+
+
+{% block contenido %}
+
+<section class="page-section bg-light">
+    <div class="container text-center">
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-floating mb-3">
+                <input class="form-control" type="text" name="titulo" maxlength="80" required="" id="id_titulo" placeholder="Titulo" value="{{ libro.titulo }}">
+                <label for="id_titulo">Titulo:</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input class="form-control" type="text" name="autor" maxlength="60" required="" id="id_autor" placeholder="Autor" value="{{ libro.autor }}">
+                <label for="id_autor">Autor:</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input class="form-control" type="text" name="descripcion" maxlength="200" required="" id="id_descripcion" placeholder="Descripcion" style="height: 100px" value="{{ libro.descripcion }}">
+                <label for="id_descripcion">Descripcion:</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input class="form-control" type="number" name="precio" step="1.00" required="" id="id_precio" placeholder="Precio" value="{{ libro.precio }}">
+                <label for="id_precio">Precio:</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input class="form-control" type="text" name="genero" maxlength="40" required="" id="id_genero" placeholder="Genero" value="{{ libro.genero }}">
+                <label for="id_genero">Genero:</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input class="form-control" type="text" name="ubicacion" maxlength="20" required="" id="id_ubicacion" placeholder="Ubicacion" value="{{ libro.ubicacion }}">
+                <label for="id_ubicacion">Ubicacion:</label>
+            </div>
+            <div class="mb-3" align="left">
+                <div><b><label for="id_imagen" class="form-label">Imagen:</label></b></div>
+                <input type="file" name="imagen" accept="image/*" required="" id="id_imagen">
+            </div>
+            <input type="submit" class="btn btn-primary" value="Guardar">
+        </form>
+    </div>
+</section>
+
+{% endblock contenido %}
